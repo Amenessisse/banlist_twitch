@@ -35,7 +35,7 @@ function onMessageHandler (target, context, msg, self) {
   // If the command is known, let's execute it
   if (commandName === '!test') {
     const num = rollDice(commandName);
-    let testarray = process.env.test.split(',')
+    let testarray = process.env.test.split(';')
     testarray.forEach((item) => {
       client.say(target, `${item}`);
     });
