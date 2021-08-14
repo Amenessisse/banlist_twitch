@@ -1,10 +1,6 @@
 const tmi = require('tmi.js');
 const schedule = require('node-schedule');
 
-const job = schedule.scheduleJob('42 * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
-});
-
 // Define configuration options
 const opts = {
   identity: {
@@ -13,6 +9,7 @@ const opts = {
   },
   channels: [
     process.env.CHANNEL_NAME,
+    process.env.CHANNEL_NAME2,
   ]
 };
 
@@ -26,13 +23,17 @@ client.on('connected', onConnectedHandler);
 // Connect to Twitch:
 client.connect();
 
+  const job = schedule.scheduleJob('42 * * * *', function(){
+  client.say(`It's test time of bot`);
+});
+
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
 
   // Remove whitespace from chat message
   const commandName = msg.trim();
-
+  
   // If the command is known, let's execute it
   if (commandName === '!d20') {
     const num = rollDice(commandName);
