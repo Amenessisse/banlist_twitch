@@ -33,7 +33,8 @@ function onMessageHandler (target, context, msg, self) {
   
   // If the command is known, let's execute it
   if (commandName === '!test') {
-    let testcsv = csv
+
+    
     let testarray = process.env.test.split(';')
     testarray.forEach((item) => {
       client.say(target, `${item}`);
