@@ -8,8 +8,11 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "tmi.js": "^1.2.1",
-    "node-schedule": "^2.0"
+    "tmi.js": "^1.8.4",
+    "node-schedule": "^2.0",
+    "csv": "^5.5.0",
+    "bufferutil": "^4.0.3",
+    "utf-8-validate": "^5.0.5"
   },
   "engines": {
     "node": "12.x"

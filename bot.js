@@ -1,5 +1,6 @@
 const tmi = require('tmi.js');
 const schedule = require('node-schedule');
+const csv = require('csv');
 
 // Define configuration options
 const opts = {
@@ -23,8 +24,6 @@ client.on('connected', onConnectedHandler);
 // Connect to Twitch:
 client.connect();
 
-
-
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
@@ -34,20 +33,12 @@ function onMessageHandler (target, context, msg, self) {
   
   // If the command is known, let's execute it
   if (commandName === '!test') {
-    const num = rollDice(commandName);
+    let testcsv = csv
     let testarray = process.env.test.split(';')
     testarray.forEach((item) => {
       client.say(target, `${item}`);
     });
-  } else {
-    console.log(`* Unknown command ${commandName}`);
   }
-}
-
-// Function called when the "dice" command is issued
-function rollDice () {
-  const sides = 20;
-  return Math.floor(Math.random() * sides) + 1;
 }
 
 // Called every time the bot connects to Twitch chat
